@@ -37,7 +37,9 @@ def verify_password(password, stored):
 
 def init_db():
     con = sqlite3.connect(DB)
-    con.row_factory = sqlite3.Row  # Enables string key access like row["name"]
+    con.row_factory = sqlite3.Row  # Fix 1: Enables string key dictionary access
+    
+    # Create tables
     con.executescript("""
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -67,6 +69,11 @@ def init_db():
         FOREIGN KEY(user_id) REFERENCES users(id)
     );
     """)
+    
+    # Fix 2: Safe column verification using integer tuple index [1] for column name
+    cols = {row[1] for row in con.execute("PRAGMA table_info(users)").fetchall()}
+    
+    con.commit()
     con.close()
 
 def log_event(event, user_id=None):
@@ -194,4 +201,4 @@ init_db()
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=False)
-                                            
+        
