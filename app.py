@@ -1,4 +1,7 @@
-import os, sqlite3, secrets, hashlib
+import os
+import sqlite3
+import secrets
+import hashlib
 from datetime import datetime
 from functools import wraps
 from flask import Flask, render_template, request, redirect, url_for, session, flash, g
@@ -34,7 +37,7 @@ def verify_password(password, stored):
 
 def init_db():
     con = sqlite3.connect(DB)
-    con.row_factory = sqlite3.Row
+    con.row_factory = sqlite3.Row  # Enables string key access like row["name"]
     con.executescript("""
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -68,7 +71,6 @@ def init_db():
 
 def log_event(event, user_id=None):
     ip = request.headers.get("X-Forwarded-For", request.remote_addr)
-    # In production, configure a trusted reverse proxy before trusting X-Forwarded-For.
     if ip and "," in ip:
         ip = ip.split(",")[0].strip()
     db().execute(
@@ -173,7 +175,6 @@ def practice():
 @app.route("/admin")
 @login_required
 def admin():
-    # Demo-only admin page. Add a real role column + authorization policy before deployment.
     logs = db().execute("""
         SELECT audit_logs.*, users.email FROM audit_logs
         LEFT JOIN users ON users.id = audit_logs.user_id
@@ -188,6 +189,9 @@ def inject_user():
         user = db().execute("SELECT name FROM users WHERE id=?", (session["user_id"],)).fetchone()
     return {"current_user": user}
 
+# Initialize database on app startup
+init_db()
+
 if __name__ == "__main__":
-    init_db()
     app.run(host="127.0.0.1", port=5000, debug=False)
+                                            
