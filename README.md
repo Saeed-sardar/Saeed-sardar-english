@@ -1,4 +1,4 @@
-# Saeed Sardar English Academy
+# Saeed Sardar English Learning
 
 A professional English-learning website starter built with Flask and SQLite.
 
