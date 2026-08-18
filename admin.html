@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block title %}Security Logs{% endblock %}
+{% block content %}
+<section class="page-head"><div class="eyebrow">DEMO ADMIN VIEW</div><h1>Audit logs</h1><p>Security events are shown here for development. Add proper role-based authorization before production.</p></section>
+<div class="table-wrap"><table><tr><th>Time (UTC)</th><th>Event</th><th>Email</th><th>IP</th></tr>
+{% for row in logs %}<tr><td>{{row["created_at"]}}</td><td>{{row["event"]}}</td><td>{{row["email"] or "—"}}</td><td>{{row["ip"] or "—"}}</td></tr>{% endfor %}
+</table></div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block title %}Dashboard{% endblock %}
+{% block content %}
+<section class="dash-head"><div><div class="eyebrow">STUDENT DASHBOARD</div><h1>Welcome, {{ user["name"] }}.</h1><p>Keep your English practice moving forward.</p></div><a class="btn primary" href="{{ url_for('lessons') }}">Continue Learning</a></section>
+<section class="progress-grid">
+{% for key,title in [("vocabulary","Vocabulary"),("grammar","Grammar"),("reading","Reading"),("listening","Listening"),("speaking","Speaking"),("writing","Writing")] %}
+<div class="progress-card"><div><span>{{title}}</span><b>{{ progress[key] }}%</b></div><div class="bar"><i style="width:{{progress[key]}}%"></i></div></div>
+{% endfor %}
+</section>
+<section class="section compact"><h2>Your next steps</h2><div class="grid three"><a class="feature link-card" href="{{url_for('lessons')}}"><h3>Lesson Library</h3><p>Choose a level and start a lesson.</p></a><a class="feature link-card" href="{{url_for('practice')}}"><h3>Practice Zone</h3><p>Test your vocabulary and grammar.</p></a><div class="feature"><h3>Daily Goal</h3><p>Spend 15–20 minutes practicing every day.</p></div></div></section>
+{% endblock %}

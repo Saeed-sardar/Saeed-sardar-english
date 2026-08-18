@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% block title %}Learn English with Confidence{% endblock %}
+{% block content %}
+<section class="hero">
+  <div><div class="eyebrow">ENGLISH LEARNING • PERSONAL PROGRESS</div>
+  <h1>Build your English.<br><span>Build your confidence.</span></h1>
+  <p>Structured lessons, practical exercises and progress tracking for vocabulary, grammar, reading, listening, speaking and writing.</p>
+  <div class="actions"><a class="btn primary" href="{{ url_for('signup') }}">Start Learning</a><a class="btn ghost" href="{{ url_for('login') }}">I already have an account</a></div></div>
+  <div class="hero-card"><div class="orb">A+</div><h3>Your English Journey</h3><p>Learn at your pace with clear levels and focused practice.</p><div class="mini-row"><span>Vocabulary</span><b>→</b></div><div class="mini-row"><span>Grammar</span><b>→</b></div><div class="mini-row"><span>Speaking</span><b>→</b></div></div>
+</section>
+<section class="section"><div class="section-head"><div><div class="eyebrow">WHAT YOU GET</div><h2>Everything you need to improve.</h2></div></div>
+<div class="grid">
+{% for title,desc,icon in [
+("Vocabulary","Learn useful words through practical examples.","01"),
+("Grammar","Understand grammar rules without confusing explanations.","02"),
+("Reading","Build comprehension with level-based passages.","03"),
+("Listening","Train your ear with everyday English.","04"),
+("Speaking","Practice useful phrases and conversation skills.","05"),
+("Writing","Improve sentences, paragraphs and everyday writing.","06")] %}
+<div class="feature"><span>{{icon}}</span><h3>{{title}}</h3><p>{{desc}}</p></div>
+{% endfor %}</div></section>
+<section class="cta"><h2>Ready to start?</h2><p>Create your free account and unlock the learning dashboard.</p><a class="btn primary" href="{{ url_for('signup') }}">Create Account</a></section>
+{% endblock %}

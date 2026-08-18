@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Log In{% endblock %}
+{% block content %}
+<section class="auth"><div class="auth-card"><div class="eyebrow">WELCOME BACK</div><h1>Log in</h1><p>Your lessons are waiting for you.</p>
+<form method="post">
+<label>Email address<input type="email" name="email" required autocomplete="email"></label>
+<label>Password<input type="password" name="password" required autocomplete="current-password"></label>
+<button class="btn primary full">Log In</button>
+</form><p class="muted">New here? <a href="{{ url_for('signup') }}">Create an account</a></p></div></section>
+{% endblock %}

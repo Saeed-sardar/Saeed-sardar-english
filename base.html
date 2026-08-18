@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}Saeed Sardar English Academy{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="{{ url_for('home') }}">S<span>SEA</span></a>
+  <nav>
+    <a href="{{ url_for('home') }}">Home</a>
+    {% if current_user %}
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('lessons') }}">Lessons</a>
+      <a href="{{ url_for('practice') }}">Practice</a>
+      <a class="pill" href="{{ url_for('logout') }}">Log out</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Log in</a>
+      <a class="pill" href="{{ url_for('signup') }}">Get Started</a>
+    {% endif %}
+  </nav>
+</header>
+{% with messages = get_flashed_messages(with_categories=true) %}
+<section class="messages">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</section>
+{% endwith %}
+<main>{% block content %}{% endblock %}</main>
+<footer><div><b>Saeed Sardar English Academy</b><br><small>Learn English. Speak Confidently.</small></div><small>© 2026 SEA</small></footer>
+</body></html>

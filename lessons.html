@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}Lessons{% endblock %}
+{% block content %}
+<section class="page-head"><div class="eyebrow">LESSON LIBRARY</div><h1>Choose your level.</h1><p>Lessons are protected behind login so only registered students can access them.</p></section>
+<div class="grid three">
+{% for level,desc in [("Beginner","Everyday words, simple sentences and basic grammar."),("Elementary","Common conversations, useful grammar and reading."),("Intermediate","More natural vocabulary, longer texts and speaking practice."),("Upper Intermediate","Complex grammar, fluency and real-world English."),("Advanced","Nuanced vocabulary, writing and advanced comprehension."),("Exam Skills","Practice strategy for reading, writing, listening and speaking tests.")] %}
+<div class="lesson-card"><span class="level">{{level}}</span><h2>{{level}} English</h2><p>{{desc}}</p><button class="btn ghost" disabled>Lesson coming soon</button></div>
+{% endfor %}
+</div>
+{% endblock %}

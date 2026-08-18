@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}Create Account{% endblock %}
+{% block content %}
+<section class="auth"><div class="auth-card"><div class="eyebrow">JOIN SEA</div><h1>Create your account</h1><p>Start your English-learning journey today.</p>
+<form method="post">
+<label>Full name<input name="name" required autocomplete="name"></label>
+<label>Email address<input type="email" name="email" required autocomplete="email"></label>
+<label>Phone number<input name="phone" required autocomplete="tel"></label>
+<label>Age<input type="number" name="age" min="13" max="120" required></label>
+<label>Password<input type="password" name="password" minlength="8" required autocomplete="new-password"></label>
+<label>Confirm password<input type="password" name="confirm" minlength="8" required autocomplete="new-password"></label>
+<button class="btn primary full">Create Account</button>
+</form><p class="muted">Already registered? <a href="{{ url_for('login') }}">Log in</a></p></div></section>
+{% endblock %}
