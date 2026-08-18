@@ -71,7 +71,7 @@ def init_db():
     """)
     
     # Fix 2: Safe column verification using integer tuple index [1] for column name
-    = {row[1] for row in con.execute("PRAGMA table_info(users)").fetchall()}
+    cols = {row[1] for row in con.execute("PRAGMA table_info(users)").fetchall()}
     
     con.commit()
     con.close()
